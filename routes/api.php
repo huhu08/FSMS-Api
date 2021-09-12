@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProcedureController;
 use App\Http\Controllers\TemplateController;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SignupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,15 @@ Route::post('/template',[TemplateController::class,'store']);
 Route::get('/template/search/{name}', [TemplateController::class, 'search']);
 Route::put('/template/{id}', [TemplateController::class, 'update']);
 Route::delete('/template/{id}', [TemplateController::class, 'destroy']);
+
+//Route for users
+Route::resource('users', UserController::class);
+
+//Route for assigne role
+Route::post('user-roles', [UserController::class , 'role']);
+
+//Route for sign-up
+Route::post('sign-up', [SignupController::class , 'register']);
+
+//Route for sign-in
+Route::post('sign-in', [SignupController::class , 'login']);
