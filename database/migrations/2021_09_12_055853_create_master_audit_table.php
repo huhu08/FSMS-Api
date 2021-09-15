@@ -15,24 +15,24 @@ class CreateMasterAuditTable extends Migration
     {
         Schema::create('master_audit', function (Blueprint $table) {
             $table->id();
-            $table->integer('department_id');
+            $table->bigInteger('department_id')->unsigned();
             $table->foreign('department_id')->references('id')->on('departments');
 
-            $table->integer('form_id');
-            $table->foreign('form_id')->references('id')->on('forms');
+            $table->bigInteger('form_id')->unsigned();
+            // $table->foreign('form_id')->constrained();
 
 
             $table->boolean('Conformity');
             $table->text('note');
             $table->date('date_in');
 
-            $table->integer('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->date('update_date');
 
             $table->integer('update_user');
-            $table->foreign('update_user')->references('updated_at')->on('users');
+            // edit ('update_user') to be a foreign key
             $table->timestamps();
         });
     }

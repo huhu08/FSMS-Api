@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\UserRole;
 use Validator;
 
-class UserController extends Controller
+class UserRoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +15,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $user_role = UserRole::all();
         return response()->json([
         "success" => true,
-        "message" => "Users List",
-        "data" => $user
+        "message" => "Users Roles List",
+        "data" => $user_role
         ]);
     }
 
@@ -44,20 +43,16 @@ class UserController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'full_name' => 'required|max:255',
-            'user_name' => 'required|unique:users|max:255',
-            'phone_number' => 'required|digits:10',
-            'status' => 'numeric',
-            'department_id' => 'required|numeric'
+            'user_role' => 'required|max:255',
         ]);
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
         }
-        $user = User::create($input);
+        $user_role = UserRole::create($input);
         return response()->json([
         "success" => true,
-        "message" => "User created successfully.",
-        "data" => $user
+        "message" => "User Role created successfully.",
+        "data" => $user_role
          ]);
     }
 
@@ -69,14 +64,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        if (is_null($user)) {
-            return $this->sendError('user not found.');
+        $user_role = UserRole::find($id);
+        if (is_null($user_role)) {
+            return response()->json(['message' => 'User Role Not found'], 404);
         }
         return response()->json([
         "success" => true,
-        "message" => "User retrieved successfully.",
-        "data" => $user
+        "message" => "User Role retrieved successfully.",
+        "data" => $user_role
         ]);
     }
 
@@ -88,14 +83,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        if (is_null($user)) {
-            return $this->sendError('user not found.');
+        $user_role = UserRole::find($id);
+        if (is_null($user_role)) {
+            return response()->json(['message' => 'User Role Not found'], 404);
         }
         return response()->json([
         "success" => true,
-        "message" => "User retrieved successfully.",
-        "data" => $user
+        "message" => "User Role retrieved successfully.",
+        "data" => $user_role
         ]);
     }
 
@@ -108,22 +103,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-            $input = $request->all();
-            $validator = Validator::make($input, [
-                'full_name' => 'max:255',
-                'user_name' => 'unique:users|max:255',
-                'phone_number' => 'digits:10',
-                'status' => 'numeric',
-                'department_id' => 'numeric'
-            ]);
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'user_role' => 'max:255',
+        ]);
         if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
+            return response()->json(['message' => 'User Role invalid'], 404);
         }
-        $user->save();
+        $user_role = UserRole::find($id);
+        $user_role->user_role =  $request->get('user_role');
+        $user_role->save();
         return response()->json([
-        "success" => true,
-        "message" => "User updated successfully.",
-        "data" => $user
+            "success" => true,
+            "message" => "User Role updated successfully.",
+            "data" => $user_role
         ]);
     }
 
@@ -135,28 +128,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        if (is_null($user)) {
-            return $this->sendError('user not found.');
-        }
-        $user->delete();
+        $user_role = UserRole::find($id);
+        if (is_null($user_role)) {
+            return response()->json(['message' => 'User Role Not found'], 404);
+        };
+        $user_role->delete();
         return response()->json([
         "success" => true,
-        "message" => "User deleted successfully.",
-        "data" => $user
+        "message" => "User Role deleted successfully.",
+        "data" => $user_role
         ]);
-    }
-
-
-    public function role(Request $request)
-    {
-        $user_id = $request->input('user_id'); // get user id from post request
-        $role_id = $request->input('role_id'); // get  Role id from post request
-
-         /* Todo request validation*/
-
-        $user = User::find($user_id);
-        $role = UserRole::find($role_id);
-        $user->roles()->attach($role);
     }
 }

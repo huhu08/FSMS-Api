@@ -6,6 +6,9 @@ use App\Http\Controllers\ProcedureController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\ObjectiveController;
+use App\Http\Controllers\MasterAuditController;
+use App\Http\Controllers\UserRoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +44,16 @@ Route::delete('/template/{id}', [TemplateController::class, 'destroy']);
 
 //Route for users
 Route::resource('users', UserController::class);
+
+
+//Route for objectives
+Route::resource('objectives', ObjectiveController::class);
+
+//Route for Master Audit
+Route::resource('master-audit', MasterAuditController::class);
+
+//Route for UserRole
+Route::resource('user-role', UserRoleController::class);
 
 //Route for assigne role
 Route::post('user-roles', [UserController::class , 'role']);
