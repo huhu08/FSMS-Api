@@ -44,9 +44,12 @@ class UserRoleController extends Controller
         $input = $request->all();
         $validator = Validator::make($input, [
             'user_role' => 'required|max:255',
+            'user_id' => 'numeric',
+            'update_user' => 'numeric',
+            'status' => 'numeric'
         ]);
         if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
+            return response()->json(['message' => 'invalid input'], 404);
         }
         $user_role = UserRole::create($input);
         return response()->json([
@@ -106,12 +109,15 @@ class UserRoleController extends Controller
         $input = $request->all();
         $validator = Validator::make($input, [
             'user_role' => 'max:255',
+            'user_id' => 'numeric',
+            'update_user' => 'numeric',
+            'status' => 'numeric'
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => 'User Role invalid'], 404);
+            return response()->json(['message' => 'invalid input'], 404);
         }
         $user_role = UserRole::find($id);
-        $user_role->user_role =  $request->get('user_role');
+        $user_role->fill($request->all());
         $user_role->save();
         return response()->json([
             "success" => true,

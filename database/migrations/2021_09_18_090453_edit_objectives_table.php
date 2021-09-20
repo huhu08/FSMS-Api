@@ -14,7 +14,7 @@ class EditObjectivesTable extends Migration
     public function up()
     {
         Schema::table('objectives', function (Blueprint $table) {
-            $table->integer('status');
+            $table->integer('status')->nullable();
         });
     }
 

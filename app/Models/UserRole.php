@@ -18,6 +18,9 @@ class UserRole extends Model
      */
     protected $fillable = [
         'user_role',
+        'user_id',
+        'status',
+        'update_user',
     ];
 
     // Relations

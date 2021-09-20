@@ -31,7 +31,9 @@ class DepartmentController extends Controller
         //
         $request->validate([
             'Department_name' => 'required',
-            
+            'user_id' => 'numeric',
+            'update_user' => 'numeric',
+            'status' => 'numeric'
         ]);
 
         return Department::create($request->all());

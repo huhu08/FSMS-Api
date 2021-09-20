@@ -9,6 +9,14 @@ use App\Http\Controllers\SignupController;
 use App\Http\Controllers\ObjectiveController;
 use App\Http\Controllers\MasterAuditController;
 use App\Http\Controllers\UserRoleController;
+use App\Http\Controllers\AreaController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\MachineListController;
+use App\Http\Controllers\PackingController;
+use App\Http\Controllers\ProductDistributionPlanController;
+use App\Http\Controllers\ProductRequestController;
+use App\Http\Controllers\SparePartController;
+use App\Http\Controllers\UnitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +62,30 @@ Route::resource('master-audit', MasterAuditController::class);
 
 //Route for UserRole
 Route::resource('user-role', UserRoleController::class);
+
+//Route for Area
+Route::resource('area', AreaController::class);
+
+//Route for Item
+Route::resource('item', ItemController::class);
+
+//Route for Machine List
+Route::resource('machine-list', MachineListController::class);
+
+//Route for Packing
+Route::resource('packing', PackingController::class);
+
+//Route for product distribution plan
+Route::resource('product-distribution-plan', ProductDistributionPlanController::class);
+
+//Route for product request
+Route::resource('product-request', ProductRequestController::class);
+
+//Route for spare part
+Route::resource('spare-part', SparePartController::class);
+
+//Route for unit
+Route::resource('unit', UnitController::class);
 
 //Route for assigne role
 Route::post('user-roles', [UserController::class , 'role']);

@@ -12,6 +12,9 @@ class Procedure extends Model
         'Procedure_name',
         'Department_id',
         'User_id',
+        'name',
+        'status',
+        'update_user',
 
        ];
   

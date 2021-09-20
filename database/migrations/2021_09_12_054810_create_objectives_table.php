@@ -15,20 +15,20 @@ class CreateObjectivesTable extends Migration
     {
         Schema::create('objectives', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('department_id')->unsigned();
+            $table->bigInteger('department_id')->unsigned()->nullable();
             $table->foreign('department_id')->references('id')->on('departments');
 
             $table->string('objective_name')->unique();
             $table->integer('KPI');
             $table->date('date_in');
 
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->date('update_date');
+            $table->date('update_date')->unsigned()->nullable();
 
-            $table->integer('update_user');
-            // edit ('update_user') to be a foreign key
+            $table->integer('update_user')->unsigned()->nullable();
+            
             $table->timestamps();
         });
     }

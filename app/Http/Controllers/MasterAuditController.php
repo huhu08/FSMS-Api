@@ -46,14 +46,15 @@ class MasterAuditController extends Controller
             'department_id' => 'numeric',
             'form_id' => 'numeric',
             'Conformity' => 'required|boolean',
-            'note' => 'required|max:500',
+            'note' => 'max:500',
             'user_id' => 'numeric',
-            'date_in' => 'required|date',
-            'update_date' => 'required|date',
-            'update_user' => 'required|numeric'
+            'date_in' => 'date',
+            'update_date' => 'date',
+            'update_user' => 'numeric',
+            'status' => 'numeric'
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => 'Mater Audit Not stored'], 404);
+            return response()->json(['message' => 'Invalid input'], 404);
         }
         $master_audit = MasterAudit::create($input);
         return response()->json([
@@ -119,25 +120,19 @@ class MasterAuditController extends Controller
             'user_id' => 'numeric',
             'date_in' => 'date',
             'update_date' => 'date',
-            'update_user' => 'numeric'
+            'update_user' => 'numeric',
+            'status' => 'numeric'
         ]);
         if ($validator->fails()) {
             return response()->json(['message' => 'Master Audit Not updated'], 404);
         }
         $master_audit = MasterAudit::find($id);
-        $master_audit->department_id =  $request->get('department_id');
-        $master_audit->form_id =  $request->get('form_id');
-        $master_audit->Conformity = $request->get('Conformity');
-        $master_audit->note =  $request->get('note');
-        $master_audit->user_id = $request->get('user_id');
-        $master_audit->date_in = $request->get('date_in');
-        $master_audit->update_user =  $request->get('update_user');
-        $master_audit->update_date =  $request->get('update_date');
+        $master_audit->fill($request->all());
         $master_audit->save();
         return response()->json([
             "success" => true,
             "message" => "Master Audit updated successfully.",
-            "data" => $objective
+            "data" => $master_audit
         ]);
     }
 

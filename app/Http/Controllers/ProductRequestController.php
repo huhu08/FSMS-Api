@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Objective;
+use App\Models\ProductRequest;
 use Validator;
 
-class ObjectiveController extends Controller
+class ProductRequestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,11 @@ class ObjectiveController extends Controller
      */
     public function index()
     {
-        $objective = Objective::all();
+        $product_request = ProductRequest::all();
         return response()->json([
         "success" => true,
-        "message" => "Objectives List",
-        "data" => $objective
+        "message" => "product request List",
+        "data" => $product_request
         ]);
     }
 
@@ -43,23 +43,22 @@ class ObjectiveController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'department_id' => 'numeric',
-            'objective_name' => 'required|max:255|unique:objectives',
-            'KPI' => 'required|numeric',
-            'user_id' => 'numeric',
-            'date_in' => 'date',
-            'update_date' => 'date',
+
+            'brand_name' => 'required|max:255',
+            'quantity' => 'required|numeric',
+            'unit_id' => 'numeric',
+            'recived_by_id' => 'numeric',
             'update_user' => 'numeric',
             'status' => 'numeric'
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => 'Invalid input'], 404);
+            return response()->json(['message' => 'Packing invalid'], 404);
         }
-        $objective = Objective::create($input);
+        $product_request = ProductRequest::create($input);
         return response()->json([
         "success" => true,
-        "message" => "Objective created successfully.",
-        "data" => $objective
+        "message" => "product request created successfully.",
+        "data" => $product_request
          ]);
     }
 
@@ -71,14 +70,14 @@ class ObjectiveController extends Controller
      */
     public function show($id)
     {
-        $objective = Objective::find($id);
-        if (is_null($objective)) {
-            return response()->json(['message' => 'Objective Not found'], 404);
+        $product_request = ProductRequest::find($id);
+        if (is_null($product_request)) {
+            return response()->json(['message' => 'product request Not found'], 404);
         }
         return response()->json([
         "success" => true,
-        "message" => "User retrieved successfully.",
-        "data" => $objective
+        "message" => "product request retrieved successfully.",
+        "data" => $product_request
         ]);
     }
 
@@ -90,14 +89,14 @@ class ObjectiveController extends Controller
      */
     public function edit($id)
     {
-        $objective = Objective::find($id);
-        if (is_null($objective)) {
-            return response()->json(['message' => 'Objective Not found'], 404);
+        $product_request = ProductRequest::find($id);
+        if (is_null($product_request)) {
+            return response()->json(['message' => 'product request Not found'], 404);
         }
         return response()->json([
         "success" => true,
-        "message" => "Objective retrieved successfully.",
-        "data" => $objective
+        "message" => "product request retrieved successfully.",
+        "data" => $product_request
         ]);
     }
 
@@ -112,25 +111,24 @@ class ObjectiveController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'department_id' => 'numeric',
-            'objective_name' => 'max:255|unique:objectives',
-            'KPI' => 'numeric',
-            'user_id' => 'numeric',
-            'date_in' => 'date',
-            'update_date' => 'date',
+            'brand_name' => 'max:255',
+            'quantity' => 'numeric',
+            'unit_id' => 'numeric',
+            'recived_by_id' => 'numeric',
             'update_user' => 'numeric',
             'status' => 'numeric'
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => 'Objective Not updated'], 404);
+            return response()->json(['message' => 'product request invalid'], 404);
         }
-        $objective = Objective::find($id);
-        $objective->fill($request->all());
-        $objective->save();
+        $product_request = ProductRequest::find($id);
+        $product_request->fill($request->all());
+        $product_request->save();
         return response()->json([
             "success" => true,
-            "message" => "Objective updated successfully.",
-            "data" => $objective
+            "message" => "product request updated successfully.",
+            "data" => $product_request
+
         ]);
     }
 
@@ -140,18 +138,17 @@ class ObjectiveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function destroy($id)
     {
-        $objective = Objective::find($id);
-        if (is_null($objective)) {
-            return response()->json(['message' => 'Objective Not found'], 404);
+        $product_request = ProductRequest::find($id);
+        if (is_null($product_request)) {
+            return response()->json(['message' => 'product request Not found'], 404);
         };
-        $objective->delete();
+        $product_request->delete();
         return response()->json([
         "success" => true,
-        "message" => "objective deleted successfully.",
-        "data" => $objective
+        "message" => "product request deleted successfully.",
+        "data" => $product_request
         ]);
     }
 }

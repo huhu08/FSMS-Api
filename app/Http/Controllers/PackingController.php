@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Objective;
+use App\Models\Packing;
 use Validator;
 
-class ObjectiveController extends Controller
+class PackingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,11 @@ class ObjectiveController extends Controller
      */
     public function index()
     {
-        $objective = Objective::all();
+        $packing = Packing::all();
         return response()->json([
         "success" => true,
-        "message" => "Objectives List",
-        "data" => $objective
+        "message" => "packing List",
+        "data" => $packing
         ]);
     }
 
@@ -43,23 +43,21 @@ class ObjectiveController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'department_id' => 'numeric',
-            'objective_name' => 'required|max:255|unique:objectives',
-            'KPI' => 'required|numeric',
+            'item_id' => 'numeric',
+            'quantity' => 'required|numeric',
+            'unit_id' => 'numeric',
             'user_id' => 'numeric',
-            'date_in' => 'date',
-            'update_date' => 'date',
             'update_user' => 'numeric',
             'status' => 'numeric'
         ]);
         if ($validator->fails()) {
             return response()->json(['message' => 'Invalid input'], 404);
         }
-        $objective = Objective::create($input);
+        $packing = Packing::create($input);
         return response()->json([
         "success" => true,
-        "message" => "Objective created successfully.",
-        "data" => $objective
+        "message" => "Packing created successfully.",
+        "data" => $packing
          ]);
     }
 
@@ -71,14 +69,14 @@ class ObjectiveController extends Controller
      */
     public function show($id)
     {
-        $objective = Objective::find($id);
-        if (is_null($objective)) {
-            return response()->json(['message' => 'Objective Not found'], 404);
+        $packing = Packing::find($id);
+        if (is_null($packing)) {
+            return response()->json(['message' => 'Packing Not found'], 404);
         }
         return response()->json([
         "success" => true,
-        "message" => "User retrieved successfully.",
-        "data" => $objective
+        "message" => "Packing retrieved successfully.",
+        "data" => $packing
         ]);
     }
 
@@ -90,14 +88,14 @@ class ObjectiveController extends Controller
      */
     public function edit($id)
     {
-        $objective = Objective::find($id);
-        if (is_null($objective)) {
-            return response()->json(['message' => 'Objective Not found'], 404);
+        $packing = Packing::find($id);
+        if (is_null($packing)) {
+            return response()->json(['message' => 'Packing Not found'], 404);
         }
         return response()->json([
         "success" => true,
-        "message" => "Objective retrieved successfully.",
-        "data" => $objective
+        "message" => "Packing retrieved successfully.",
+        "data" => $packing
         ]);
     }
 
@@ -112,25 +110,24 @@ class ObjectiveController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'department_id' => 'numeric',
-            'objective_name' => 'max:255|unique:objectives',
-            'KPI' => 'numeric',
+            'item_id' => 'numeric',
+            'quantity' => 'numeric',
+            'unit_id' => 'numeric',
             'user_id' => 'numeric',
-            'date_in' => 'date',
-            'update_date' => 'date',
             'update_user' => 'numeric',
             'status' => 'numeric'
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => 'Objective Not updated'], 404);
+            return response()->json(['message' => 'invalid input'], 404);
         }
-        $objective = Objective::find($id);
-        $objective->fill($request->all());
-        $objective->save();
+        $packing = Packing::find($id);
+        $packing->fill($request->all());
+        $packing->save();
         return response()->json([
             "success" => true,
-            "message" => "Objective updated successfully.",
-            "data" => $objective
+            "message" => "Packing updated successfully.",
+            "data" => $packing
+
         ]);
     }
 
@@ -140,18 +137,17 @@ class ObjectiveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function destroy($id)
     {
-        $objective = Objective::find($id);
-        if (is_null($objective)) {
-            return response()->json(['message' => 'Objective Not found'], 404);
+        $packing = Packing::find($id);
+        if (is_null($packing)) {
+            return response()->json(['message' => 'Packing Not found'], 404);
         };
-        $objective->delete();
+        $packing->delete();
         return response()->json([
         "success" => true,
-        "message" => "objective deleted successfully.",
-        "data" => $objective
+        "message" => "Packing deleted successfully.",
+        "data" => $packing
         ]);
     }
 }

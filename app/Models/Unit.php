@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MasterAudit extends Model
+class Unit extends Model
 {
     use HasFactory;
-
-    protected $table = 'master_audit';
+    protected $table = 'units';
 
     /**
      * The attributes that are mass assignable.
@@ -17,14 +16,10 @@ class MasterAudit extends Model
      * @var string[]
      */
     protected $fillable = [
-       'department_id',
-       'form_id',
-       'Conformity',
-       'note',
-       'date_in',
-       'user_id',
-       'update_user',
-       'update_date',
-       'status',
+
+        'unit_name',
+        'update_user',
+        'user_id',
+        'status',
     ];
 }

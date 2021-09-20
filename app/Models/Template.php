@@ -11,7 +11,10 @@ class Template extends Model
     protected $fillable = [
         'Template_name',
         'Procedure_Id',
-       // 'User_id',
+        'name',
+        'user_id',
+        'status',
+        'update_user',
 
        ];
 }
