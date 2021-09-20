@@ -25,9 +25,9 @@ class CreateObjectivesTable extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->date('update_date')->unsigned()->nullable();
+            $table->date('update_date')->nullable();
 
-            $table->integer('update_user')->unsigned()->nullable();
+            $table->integer('update_user')->nullable();
             
             $table->timestamps();
         });

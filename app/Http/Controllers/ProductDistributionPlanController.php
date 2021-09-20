@@ -53,7 +53,7 @@ class ProductDistributionPlanController extends Controller
             'status' => 'numeric'
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => 'Packing invalid'], 404);
+            return response()->json(['message' => 'invalid input'], 404);
         }
         $productdis = ProductDistributionPlan::create($input);
         return response()->json([
@@ -124,9 +124,7 @@ class ProductDistributionPlanController extends Controller
             return response()->json(['message' => 'product distribution plan invalid'], 404);
         }
         $productdis = ProductDistributionPlan::find($id);
-        $productdis->brand =  $request->get('brand');
-        $productdis->comments =  $request->get('comments');
-        $productdis->quantity =  $request->get('quantity');
+        $productdis->fill($request->all());
         $productdis->save();
         return response()->json([
             "success" => true,

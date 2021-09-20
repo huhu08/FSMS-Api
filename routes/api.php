@@ -18,6 +18,7 @@ use App\Http\Controllers\ProductRequestController;
 use App\Http\Controllers\SparePartController;
 use App\Http\Controllers\UnitController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -86,6 +87,9 @@ Route::resource('spare-part', SparePartController::class);
 
 //Route for unit
 Route::resource('unit', UnitController::class);
+
+//Route for product distribution plan
+Route::resource('product-distribution', ProductDistributionPlanController::class);
 
 //Route for assigne role
 Route::post('user-roles', [UserController::class , 'role']);
