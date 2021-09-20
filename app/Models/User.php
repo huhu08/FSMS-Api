@@ -27,6 +27,7 @@ class User extends Authenticatable
         'status',
         'department_id',
         'password',
+       'api_token',
     ];
 
     /**
@@ -39,19 +40,18 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
+      /**
+     * Add a mutator to ensure hashed passwords
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 
     // Relations
 
-    public function role()
+    public function roles()
     {
-        return $this->belongsTo(UserRole::class);
+        return $this->belongsToMany(UserRole::class);
     }
 }

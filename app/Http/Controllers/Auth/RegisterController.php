@@ -50,24 +50,22 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'full_name' => ['required', 'string', 'max:255'],
-            'user_name' => ['required', 'string', 'max:255', 'unique:users'],
-            'phone_number' => ['required|digits:10'],
-            'status' => ['required', 'numeric', 'max:20'],
-            'role_id' => ['required', 'numeric', 'max:20'],
-            'department_id' => ['required', 'numeric', 'max:20'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'full_name' => 'required|string|max:255',
+            'user_name' => 'required|string|max:255|unique:users',
+            'phone_number' => 'required|digits:10',
+            'status' => 'required|numeric|max:20',
+            'role_id' => 'required|numeric|max:20',
+            'department_id' => 'required|numeric|max:20',
+            'password' => 'required|string|min:8|confirmed',
         ]);
-    }
 
-    /**
+        /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
-    {
+   
         return User::create([
             'full_name' => $data['full_name'],
             'user_name' => $data['user_name'],
@@ -77,5 +75,8 @@ class RegisterController extends Controller
             'department_id' => $data['department_id'],
             'password' => Hash::make($data['password']),
         ]);
+    
     }
+
+    
 }

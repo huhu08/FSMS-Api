@@ -52,7 +52,17 @@ Route::put('/template/{id}', [TemplateController::class, 'update']);
 Route::delete('/template/{id}', [TemplateController::class, 'destroy']);
 
 //Route for users
-Route::resource('users', UserController::class);
+Route::resource('user', UserController::class);
+
+//Route for assigne role
+Route::post('user-roles', [UserController::class , 'role']);
+
+//Route for activation
+Route::get('activation', [UserController::class , 'activate']);
+
+
+//Route for deactivation
+Route::get('deactivation', [UserController::class , 'deactivate']);
 
 
 //Route for objectives
@@ -90,9 +100,6 @@ Route::resource('unit', UnitController::class);
 
 //Route for product distribution plan
 Route::resource('product-distribution', ProductDistributionPlanController::class);
-
-//Route for assigne role
-Route::post('user-roles', [UserController::class , 'role']);
 
 //Route for sign-up
 Route::post('sign-up', [SignupController::class , 'register']);
