@@ -24,5 +24,6 @@ class Objective extends Model
         'user_id',
         'update_date',
         'update_user',
+        'status',
     ];
 }

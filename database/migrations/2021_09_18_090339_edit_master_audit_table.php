@@ -15,7 +15,7 @@ class EditMasterAuditTable extends Migration
     {
         
         Schema::table('master_audit', function (Blueprint $table) {
-            $table->integer('status');
+            $table->integer('status')->nullable();
         });
     }
 

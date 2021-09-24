@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EditUserRolesTable extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,18 @@ class EditUserRolesTable extends Migration
      */
     public function up()
     {
-        Schema::table('user_roles', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
+            $table->id();
+            $table->string('item');
+            $table->integer('quantity');
+            $table->integer('unit_id')->unsigned()->nullable();
+
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
     
             $table->integer('update_user')->nullable();
             $table->integer('status')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -29,6 +35,6 @@ class EditUserRolesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('items');
     }
 }

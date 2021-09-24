@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Objective;
+use App\Models\MachineList;
 use Validator;
 
-class ObjectiveController extends Controller
+class MachineListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,11 @@ class ObjectiveController extends Controller
      */
     public function index()
     {
-        $objective = Objective::all();
+        $machine = MachineList::all();
         return response()->json([
         "success" => true,
-        "message" => "Objectives List",
-        "data" => $objective
+        "message" => "Machine List",
+        "data" => $machine
         ]);
     }
 
@@ -43,23 +43,22 @@ class ObjectiveController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'department_id' => 'numeric',
-            'objective_name' => 'required|max:255|unique:objectives',
-            'KPI' => 'required|numeric',
+            'equipment_name' => 'required|max:255',
+            'code' => 'required|max:255',
+            'note' => 'max:500',
+            'area_id' => 'numeric',
             'user_id' => 'numeric',
-            'date_in' => 'date',
-            'update_date' => 'date',
             'update_user' => 'numeric',
             'status' => 'numeric'
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => 'Invalid input'], 404);
+            return response()->json(['message' => 'invalid input'], 404);
         }
-        $objective = Objective::create($input);
+        $machine = MachineList::create($input);
         return response()->json([
         "success" => true,
-        "message" => "Objective created successfully.",
-        "data" => $objective
+        "message" => "Machine List created successfully.",
+        "data" => $machine
          ]);
     }
 
@@ -71,14 +70,14 @@ class ObjectiveController extends Controller
      */
     public function show($id)
     {
-        $objective = Objective::find($id);
-        if (is_null($objective)) {
-            return response()->json(['message' => 'Objective Not found'], 404);
+        $machine = MachineList::find($id);
+        if (is_null($machine)) {
+            return response()->json(['message' => 'Machine List Not found'], 404);
         }
         return response()->json([
         "success" => true,
-        "message" => "User retrieved successfully.",
-        "data" => $objective
+        "message" => "Machine List retrieved successfully.",
+        "data" => $machine
         ]);
     }
 
@@ -90,14 +89,14 @@ class ObjectiveController extends Controller
      */
     public function edit($id)
     {
-        $objective = Objective::find($id);
-        if (is_null($objective)) {
-            return response()->json(['message' => 'Objective Not found'], 404);
+        $machine = MachineList::find($id);
+        if (is_null($machine)) {
+            return response()->json(['message' => 'Machine List Not found'], 404);
         }
         return response()->json([
         "success" => true,
-        "message" => "Objective retrieved successfully.",
-        "data" => $objective
+        "message" => "Machine List retrieved successfully.",
+        "data" => $machine
         ]);
     }
 
@@ -112,25 +111,25 @@ class ObjectiveController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'department_id' => 'numeric',
-            'objective_name' => 'max:255|unique:objectives',
-            'KPI' => 'numeric',
+            'equipment_name' => 'max:255',
+            'code' => 'max:255',
+            'note' => 'max:500',
+            'area_id' => 'numeric',
             'user_id' => 'numeric',
-            'date_in' => 'date',
-            'update_date' => 'date',
             'update_user' => 'numeric',
             'status' => 'numeric'
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => 'Objective Not updated'], 404);
+            return response()->json(['message' => 'invalid input'], 404);
         }
-        $objective = Objective::find($id);
-        $objective->fill($request->all());
-        $objective->save();
+        $machine = MachineList::find($id);
+        $machine->fill($request->all());
+        $machine->save();
         return response()->json([
             "success" => true,
-            "message" => "Objective updated successfully.",
-            "data" => $objective
+            "message" => "Machine List updated successfully.",
+            "data" => $machine
+
         ]);
     }
 
@@ -140,18 +139,17 @@ class ObjectiveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function destroy($id)
     {
-        $objective = Objective::find($id);
-        if (is_null($objective)) {
-            return response()->json(['message' => 'Objective Not found'], 404);
+        $machine = MachineList::find($id);
+        if (is_null($machine)) {
+            return response()->json(['message' => 'Machine List Not found'], 404);
         };
-        $objective->delete();
+        $machine->delete();
         return response()->json([
         "success" => true,
-        "message" => "objective deleted successfully.",
-        "data" => $objective
+        "message" => "Machine List deleted successfully.",
+        "data" => $machine
         ]);
     }
 }

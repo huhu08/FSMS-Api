@@ -20,7 +20,7 @@ class UserController extends Controller
         return response()->json([
         "success" => true,
         "message" => "Users List",
-        "data" => $user
+        "request" => $user
         ]);
     }
 
@@ -42,23 +42,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $validator = Validator::make($input, [
-            'full_name' => 'required|max:255',
-            'user_name' => 'required|unique:users|max:255',
-            'phone_number' => 'required|digits:10',
-            'status' => 'numeric',
-            'department_id' => 'required|numeric'
-        ]);
-        if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
-        }
-        $user = User::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "User created successfully.",
-        "data" => $user
-         ]);
+      //
     }
 
     /**
@@ -76,7 +60,7 @@ class UserController extends Controller
         return response()->json([
         "success" => true,
         "message" => "User retrieved successfully.",
-        "data" => $user
+        "request" => $user
         ]);
     }
 
@@ -88,15 +72,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        if (is_null($user)) {
-            return $this->sendError('user not found.');
-        }
-        return response()->json([
-        "success" => true,
-        "message" => "User retrieved successfully.",
-        "data" => $user
-        ]);
+      //
     }
 
     /**
@@ -108,23 +84,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-            $input = $request->all();
-            $validator = Validator::make($input, [
-                'full_name' => 'max:255',
-                'user_name' => 'unique:users|max:255',
-                'phone_number' => 'digits:10',
-                'status' => 'numeric',
-                'department_id' => 'numeric'
-            ]);
-        if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
-        }
-        $user->save();
-        return response()->json([
-        "success" => true,
-        "message" => "User updated successfully.",
-        "data" => $user
-        ]);
+         //
     }
 
     /**
@@ -143,20 +103,39 @@ class UserController extends Controller
         return response()->json([
         "success" => true,
         "message" => "User deleted successfully.",
-        "data" => $user
+        "request" => $user
         ]);
     }
 
 
     public function role(Request $request)
     {
-        $user_id = $request->input('user_id'); // get user id from post request
-        $role_id = $request->input('role_id'); // get  Role id from post request
+        
+        $user_id = $request->input('user_id'); // get user id 
+        $role_id = $request->input('role_id'); // get  Role id 
 
          /* Todo request validation*/
 
         $user = User::find($user_id);
-        $role = UserRole::find($role_id);
-        $user->roles()->attach($role);
+        $user->role_id = $request->input('role_id'); 
+        $user->save();
+        
+        return response()->json(['success' =>'Role assigned successfully']);
+    }
+
+    public function activate(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->status = 1;
+        $user->save();
+        return response()->json(['success' =>'user is Activated']);
+    }
+
+    public function deactivate(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->status = 0;
+        $user->save();
+        return response()->json(['success' =>'user is Deactivated']);
     }
 }

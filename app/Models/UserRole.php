@@ -18,12 +18,14 @@ class UserRole extends Model
      */
     protected $fillable = [
         'user_role',
+        'user_id',
+        'status',
+        'update_user',
     ];
 
     // Relations
 
-    public function users()
-    {
-        return $this->hasMany(User::class);
+    public function users() {
+        return $this->belongsToMany(User::class);
     }
 }

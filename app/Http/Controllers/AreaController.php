@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Objective;
+use App\Models\Area;
 use Validator;
 
-class ObjectiveController extends Controller
+class AreaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,11 @@ class ObjectiveController extends Controller
      */
     public function index()
     {
-        $objective = Objective::all();
+        $area = Area::all();
         return response()->json([
         "success" => true,
-        "message" => "Objectives List",
-        "data" => $objective
+        "message" => "Areas List",
+        "data" => $area
         ]);
     }
 
@@ -43,23 +43,19 @@ class ObjectiveController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'department_id' => 'numeric',
-            'objective_name' => 'required|max:255|unique:objectives',
-            'KPI' => 'required|numeric',
+            'area' => 'required|max:255',
             'user_id' => 'numeric',
-            'date_in' => 'date',
-            'update_date' => 'date',
             'update_user' => 'numeric',
             'status' => 'numeric'
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => 'Invalid input'], 404);
+            return response()->json(['message' => 'invalid input'], 404);
         }
-        $objective = Objective::create($input);
+        $area = Area::create($input);
         return response()->json([
         "success" => true,
-        "message" => "Objective created successfully.",
-        "data" => $objective
+        "message" => "Area created successfully.",
+        "data" => $area
          ]);
     }
 
@@ -71,14 +67,14 @@ class ObjectiveController extends Controller
      */
     public function show($id)
     {
-        $objective = Objective::find($id);
-        if (is_null($objective)) {
-            return response()->json(['message' => 'Objective Not found'], 404);
+        $area = Area::find($id);
+        if (is_null($area)) {
+            return response()->json(['message' => 'Area Not found'], 404);
         }
         return response()->json([
         "success" => true,
-        "message" => "User retrieved successfully.",
-        "data" => $objective
+        "message" => "Area retrieved successfully.",
+        "data" => $area
         ]);
     }
 
@@ -90,14 +86,14 @@ class ObjectiveController extends Controller
      */
     public function edit($id)
     {
-        $objective = Objective::find($id);
-        if (is_null($objective)) {
-            return response()->json(['message' => 'Objective Not found'], 404);
+        $area = Area::find($id);
+        if (is_null($area)) {
+            return response()->json(['message' => 'Area Not found'], 404);
         }
         return response()->json([
         "success" => true,
-        "message" => "Objective retrieved successfully.",
-        "data" => $objective
+        "message" => "Area retrieved successfully.",
+        "data" => $area
         ]);
     }
 
@@ -112,25 +108,22 @@ class ObjectiveController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'department_id' => 'numeric',
-            'objective_name' => 'max:255|unique:objectives',
-            'KPI' => 'numeric',
+            'area' => 'max:255',
             'user_id' => 'numeric',
-            'date_in' => 'date',
-            'update_date' => 'date',
             'update_user' => 'numeric',
             'status' => 'numeric'
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => 'Objective Not updated'], 404);
+            return response()->json(['message' => 'invalid input'], 404);
         }
-        $objective = Objective::find($id);
-        $objective->fill($request->all());
-        $objective->save();
+        $area = Area::find($id);
+        $area->fill($request->all());
+        $area->save();
         return response()->json([
             "success" => true,
-            "message" => "Objective updated successfully.",
-            "data" => $objective
+            "message" => "Area updated successfully.",
+            "data" => $area
+
         ]);
     }
 
@@ -140,18 +133,17 @@ class ObjectiveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function destroy($id)
     {
-        $objective = Objective::find($id);
-        if (is_null($objective)) {
-            return response()->json(['message' => 'Objective Not found'], 404);
+        $area = Area::find($id);
+        if (is_null($area)) {
+            return response()->json(['message' => 'Area Not found'], 404);
         };
-        $objective->delete();
+        $area->delete();
         return response()->json([
         "success" => true,
-        "message" => "objective deleted successfully.",
-        "data" => $objective
+        "message" => "Area deleted successfully.",
+        "data" => $area
         ]);
     }
 }
