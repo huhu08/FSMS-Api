@@ -1,0 +1,48 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateMasterRecordTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('master_record', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('template_id')->unsigned()->nullable();
+            $table->foreign('template_id')->references('id')->on('templates');
+
+            $table->bigInteger('department_id')->unsigned()->nullable();
+            $table->foreign('department_id')->references('id')->on('departments');
+            $table->string('name');
+            $table->text('note')->nullable();
+            $table->date('date');
+            $table->text('content');
+
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+    
+            $table->integer('update_user')->nullable();
+            $table->integer('status')->nullable();
+  
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('master_record');
+    }
+}
