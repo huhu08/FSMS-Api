@@ -26,7 +26,6 @@ class CreateDetailsRecordTable extends Migration
 
             $table->integer('update_user')->nullable();
             $table->integer('status')->nullable();
-            
 
             $table->timestamps();
         });

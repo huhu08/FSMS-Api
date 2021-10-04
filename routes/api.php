@@ -17,7 +17,9 @@ use App\Http\Controllers\ProductDistributionPlanController;
 use App\Http\Controllers\ProductRequestController;
 use App\Http\Controllers\SparePartController;
 use App\Http\Controllers\UnitController;
-
+use App\Http\Controllers\DetailRecordController;
+use App\Http\Controllers\MasterRecordController;
+use App\Http\Controllers\FieldRecord;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +99,18 @@ Route::resource('spare-part', SparePartController::class);
 
 //Route for unit
 Route::resource('unit', UnitController::class);
+
+
+//Route for Master Record
+Route::resource('master-record', MasterRecordController::class);
+
+
+//Route for Details Record
+Route::resource('details-record', DetailRecordController::class);
+
+
+//Route for field
+Route::resource('field', fieldController::class);
 
 //Route for product distribution plan
 Route::resource('product-distribution', ProductDistributionPlanController::class);
