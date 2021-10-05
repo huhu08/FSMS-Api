@@ -53,11 +53,11 @@ class FieldController extends Controller
         if ($validator->fails()) {
             return response()->json(['message' => 'invalid input'], 404);
         }
-        $fiels = Field::create($input);
+        $field = Field::create($input);
         return response()->json([
         "success" => true,
         "message" => "Field created successfully.",
-        "data" => $Field
+        "data" => $field
          ]);
     }
 

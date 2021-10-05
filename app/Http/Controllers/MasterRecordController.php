@@ -55,7 +55,7 @@ class MasterRecordController extends Controller
         if ($validator->fails()) {
             return response()->json(['message' => 'invalid input'], 404);
         }
-        $fiels = MasterRecord::create($input);
+        $master_record = MasterRecord::create($input);
         return response()->json([
         "success" => true,
         "message" => "Master Record created successfully.",

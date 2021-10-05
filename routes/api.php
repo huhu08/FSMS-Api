@@ -19,7 +19,7 @@ use App\Http\Controllers\SparePartController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\DetailRecordController;
 use App\Http\Controllers\MasterRecordController;
-use App\Http\Controllers\FieldRecord;
+use App\Http\Controllers\FieldController;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,7 +111,7 @@ Route::resource('details-record', DetailRecordController::class);
 
 
 //Route for field
-Route::resource('field', fieldController::class);
+Route::resource('field', FieldController::class);
 
 //Route for product distribution plan
 Route::resource('product-distribution', ProductDistributionPlanController::class);
