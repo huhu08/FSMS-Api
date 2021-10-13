@@ -20,7 +20,11 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\DetailRecordController;
 use App\Http\Controllers\MasterRecordController;
 use App\Http\Controllers\FieldController;
-
+use App\Http\Controllers\CorrectiveActionController;
+use App\Http\Controllers\DetailsNonConformityController;
+use App\Http\Controllers\ImplementationFollowUpController;
+use App\Http\Controllers\MasterNonConformityController;
+use App\Http\Controllers\NonConformityStatusController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -112,6 +116,22 @@ Route::resource('details-record', DetailRecordController::class);
 
 //Route for field
 Route::resource('field', FieldController::class);
+
+//Route for nonconformity status
+Route::resource('nonconformity-status', NonConformityStatusController::class);
+
+//Route for master nonconformity
+Route::resource('master-nonconformity', MasterNonConformityController::class);
+
+
+//Route for ImplementationFollowUpController
+Route::resource('implementation', ImplementationFollowUpController::class);
+
+//Route for DetailsNonConformityController
+Route::resource('details-nonconformity', DetailsNonConformityController::class);
+
+//Route for CorrectiveActionController
+Route::resource('corrective-action', CorrectiveActionController::class);
 
 //Route for product distribution plan
 Route::resource('product-distribution', ProductDistributionPlanController::class);
