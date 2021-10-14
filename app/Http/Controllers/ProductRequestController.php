@@ -16,11 +16,7 @@ class ProductRequestController extends Controller
     public function index()
     {
         $product_request = ProductRequest::all();
-        return response()->json([
-        "success" => true,
-        "message" => "product request List",
-        "data" => $product_request
-        ]);
+        return $product_request;
     }
 
     /**
@@ -55,11 +51,7 @@ class ProductRequestController extends Controller
             return response()->json(['message' => 'Packing invalid'], 404);
         }
         $product_request = ProductRequest::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "product request created successfully.",
-        "data" => $product_request
-         ]);
+        return $product_request;
     }
 
     /**
@@ -74,11 +66,7 @@ class ProductRequestController extends Controller
         if (is_null($product_request)) {
             return response()->json(['message' => 'product request Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "product request retrieved successfully.",
-        "data" => $product_request
-        ]);
+        return $product_request;
     }
 
     /**
@@ -93,11 +81,7 @@ class ProductRequestController extends Controller
         if (is_null($product_request)) {
             return response()->json(['message' => 'product request Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "product request retrieved successfully.",
-        "data" => $product_request
-        ]);
+        return $product_request;
     }
 
     /**
@@ -124,12 +108,7 @@ class ProductRequestController extends Controller
         $product_request = ProductRequest::find($id);
         $product_request->fill($request->all());
         $product_request->save();
-        return response()->json([
-            "success" => true,
-            "message" => "product request updated successfully.",
-            "data" => $product_request
-
-        ]);
+        return $product_request;
     }
 
     /**
@@ -144,11 +123,8 @@ class ProductRequestController extends Controller
         if (is_null($product_request)) {
             return response()->json(['message' => 'product request Not found'], 404);
         };
+    
+        return $product_request;
         $product_request->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "product request deleted successfully.",
-        "data" => $product_request
-        ]);
     }
 }

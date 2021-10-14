@@ -16,11 +16,7 @@ class UnitController extends Controller
     public function index()
     {
         $unit = Unit::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Unit List",
-        "data" => $unit
-        ]);
+        return $unit;
     }
 
     /**
@@ -52,11 +48,7 @@ class UnitController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $unit = Unit::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Unit created successfully.",
-        "data" => $unit
-         ]);
+        return $unit;
     }
 
     /**
@@ -71,11 +63,7 @@ class UnitController extends Controller
         if (is_null($unit)) {
             return response()->json(['message' => 'Unit Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Unit retrieved successfully.",
-        "data" => $unit
-        ]);
+        return $unit;
     }
 
     /**
@@ -90,11 +78,7 @@ class UnitController extends Controller
         if (is_null($unit)) {
             return response()->json(['message' => 'Unit Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Unit retrieved successfully.",
-        "data" => $unit
-        ]);
+        return $unit;
     }
 
     /**
@@ -119,12 +103,7 @@ class UnitController extends Controller
         $unit = Unit::find($id);
         $unit->fill($request->all());
         $unit->save();
-        return response()->json([
-            "success" => true,
-            "message" => "Unit updated successfully.",
-            "data" => $unit
-
-        ]);
+        return $unit;
     }
 
     /**
@@ -139,11 +118,7 @@ class UnitController extends Controller
         if (is_null($unit)) {
             return response()->json(['message' => 'Unit Not found'], 404);
         };
+        return $unit;
         $unit->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "Unit deleted successfully.",
-        "data" => $unit
-        ]);
     }
 }

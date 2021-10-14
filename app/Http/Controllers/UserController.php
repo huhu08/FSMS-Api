@@ -17,11 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Users List",
-        "request" => $user
-        ]);
+        return $user;
     }
 
     /**
@@ -57,11 +53,7 @@ class UserController extends Controller
         if (is_null($user)) {
             return $this->sendError('user not found.');
         }
-        return response()->json([
-        "success" => true,
-        "message" => "User retrieved successfully.",
-        "request" => $user
-        ]);
+        return $user;
     }
 
     /**
@@ -99,12 +91,9 @@ class UserController extends Controller
         if (is_null($user)) {
             return $this->sendError('user not found.');
         }
+       
+        return $user;
         $user->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "User deleted successfully.",
-        "request" => $user
-        ]);
     }
 
 

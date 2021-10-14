@@ -15,11 +15,7 @@ class DetailRecordController extends Controller
     public function index()
     {
         $detail_record = DetailRecord::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Detail Record List",
-        "data" => $detail_record
-        ]);
+        return $detail_record;
     }
 
    /**
@@ -53,11 +49,7 @@ class DetailRecordController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $detail_record = DetailRecord::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Detail created successfully.",
-        "data" => $detail_record
-            ]);
+        return $detail_record;
     }
 
     /**
@@ -72,11 +64,7 @@ class DetailRecordController extends Controller
         if (is_null($detail_record)) {
             return response()->json(['message' =>  'Detail Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" =>  "Detail retrieved successfully.",
-        "data" =>  $detail_record
-        ]);
+        return $detail_record;
     }
 
     /**
@@ -91,11 +79,7 @@ class DetailRecordController extends Controller
         if (is_null($detail_record)) {
             return response()->json(['message' =>  'Detail Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" =>  "Details Record retrieved successfully.",
-        "data" =>  $detail_record
-        ]);
+        return $detail_record;
     }
 
     /**
@@ -122,12 +106,7 @@ class DetailRecordController extends Controller
             $detail_record = DetailRecord::find($id);
             $detail_record->fill($request->all());
             $detail_record->save();
-        return response()->json([
-            "success" => true,
-            "message" =>  "Detail Record updated successfully.",
-            "data" =>  $detail_record
-
-        ]);
+            return $detail_record;
     }
 
     /**
@@ -142,11 +121,8 @@ class DetailRecordController extends Controller
         if (is_null($detail_record)) {
             return response()->json(['message' =>  'Detail Record Not found'], 404);
         };
+        return $detail_record;
             $detail_record->delete();
-        return response()->json([
-        "success" => true,
-        "message" =>  "Detail Record deleted successfully.",
-        "data" =>  $detail_record
-        ]);
+      
     }
 }

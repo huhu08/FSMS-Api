@@ -16,11 +16,7 @@ class PackingController extends Controller
     public function index()
     {
         $packing = Packing::all();
-        return response()->json([
-        "success" => true,
-        "message" => "packing List",
-        "data" => $packing
-        ]);
+        return $packing;
     }
 
     /**
@@ -54,11 +50,7 @@ class PackingController extends Controller
             return response()->json(['message' => 'Invalid input'], 404);
         }
         $packing = Packing::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Packing created successfully.",
-        "data" => $packing
-         ]);
+        return $packing;
     }
 
     /**
@@ -73,11 +65,7 @@ class PackingController extends Controller
         if (is_null($packing)) {
             return response()->json(['message' => 'Packing Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Packing retrieved successfully.",
-        "data" => $packing
-        ]);
+        return $packing;
     }
 
     /**
@@ -92,11 +80,7 @@ class PackingController extends Controller
         if (is_null($packing)) {
             return response()->json(['message' => 'Packing Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Packing retrieved successfully.",
-        "data" => $packing
-        ]);
+        return $packing;
     }
 
     /**
@@ -123,12 +107,7 @@ class PackingController extends Controller
         $packing = Packing::find($id);
         $packing->fill($request->all());
         $packing->save();
-        return response()->json([
-            "success" => true,
-            "message" => "Packing updated successfully.",
-            "data" => $packing
-
-        ]);
+        return $packing;
     }
 
     /**
@@ -143,11 +122,8 @@ class PackingController extends Controller
         if (is_null($packing)) {
             return response()->json(['message' => 'Packing Not found'], 404);
         };
+        return $packing;
         $packing->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "Packing deleted successfully.",
-        "data" => $packing
-        ]);
+        
     }
 }

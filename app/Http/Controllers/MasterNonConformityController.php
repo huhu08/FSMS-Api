@@ -17,11 +17,7 @@ class MasterNonConformityController extends Controller
     public function index()
     {
         $master = MasterNonConformity::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Master nonconformity List",
-        "data" => $master
-        ]);
+        return $master;
     }
 
     /**
@@ -60,11 +56,7 @@ class MasterNonConformityController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $master = MasterNonConformity::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Master nonconformity created successfully.",
-        "data" => $master
-         ]);
+        return $master;
     }
 
     /**
@@ -79,11 +71,7 @@ class MasterNonConformityController extends Controller
         if (is_null($master)) {
             return response()->json(['message' => 'Master nonconformity Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Master nonconformity retrieved successfully.",
-        "data" => $master
-        ]);
+        return $master;
     }
 
     /**
@@ -98,11 +86,7 @@ class MasterNonConformityController extends Controller
         if (is_null($master)) {
             return response()->json(['message' => 'Master nonconformity Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Master nonconformity retrieved successfully.",
-        "data" => $master
-        ]);
+        return $master;
     }
 
     /**
@@ -132,12 +116,7 @@ class MasterNonConformityController extends Controller
         $master = MasterNonConformity::find($id);
         $master->fill($request->all());
         $master->save();
-        return response()->json([
-            "success" => true,
-            "message" => "Master nonconformity updated successfully.",
-            "data" => $master
-
-        ]);
+        return $master;
     }
 
     /**
@@ -152,11 +131,8 @@ class MasterNonConformityController extends Controller
         if (is_null($master)) {
             return response()->json(['message' => 'Master nonconformity Not found'], 404);
         };
+       
+        return $master;
         $master->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "Master nonconformity deleted successfully.",
-        "data" => $master
-        ]);
     }
 }

@@ -16,11 +16,7 @@ class SparePartController extends Controller
     public function index()
     {
         $spare_part = SparePart::all();
-        return response()->json([
-        "success" => true,
-        "message" => "spare part List",
-        "data" => $spare_part
-        ]);
+        return $spare_part;
     }
 
     /**
@@ -56,11 +52,7 @@ class SparePartController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $spare_part = SparePart::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "spare part created successfully.",
-        "data" => $spare_part
-         ]);
+        return $spare_part;
     }
 
     /**
@@ -75,11 +67,7 @@ class SparePartController extends Controller
         if (is_null($spare_part)) {
             return response()->json(['message' => 'spare part Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "spare part retrieved successfully.",
-        "data" => $spare_part
-        ]);
+        return $spare_part;
     }
 
     /**
@@ -94,11 +82,7 @@ class SparePartController extends Controller
         if (is_null($spare_part)) {
             return response()->json(['message' => 'spare part Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "spare part retrieved successfully.",
-        "data" => $spare_part
-        ]);
+        return $spare_part;
     }
 
     /**
@@ -127,12 +111,7 @@ class SparePartController extends Controller
         $spare_part = SparePart::find($id);
         $spare_part->fill($request->all());
         $spare_part->save();
-        return response()->json([
-            "success" => true,
-            "message" => "spare part updated successfully.",
-            "data" => $spare_part
-
-        ]);
+        return $spare_part;
     }
 
     /**
@@ -147,11 +126,7 @@ class SparePartController extends Controller
         if (is_null($spare_part)) {
             return response()->json(['message' => 'spare part Not found'], 404);
         };
+        return $spare_part;
         $spare_part->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "spare part deleted successfully.",
-        "data" => $spare_part
-        ]);
     }
 }

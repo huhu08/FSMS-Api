@@ -14,13 +14,9 @@ class ProductDistributionPlanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {
         $productdis = ProductDistributionPlan::all();
-        return response()->json([
-        "success" => true,
-        "message" => "product distribution plan List",
-        "data" => $productdis
-        ]);
+        return $productdis;
     }
 
     /**
@@ -56,11 +52,7 @@ class ProductDistributionPlanController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $productdis = ProductDistributionPlan::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "product distribution plan created successfully.",
-        "data" => $productdis
-         ]);
+        return $productdis;
     }
 
     /**
@@ -75,11 +67,7 @@ class ProductDistributionPlanController extends Controller
         if (is_null($productdis)) {
             return response()->json(['message' => 'product distribution plan Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "product distribution plan retrieved successfully.",
-        "data" => $productdis
-        ]);
+        return $productdis;
     }
 
     /**
@@ -94,11 +82,7 @@ class ProductDistributionPlanController extends Controller
         if (is_null($productdis)) {
             return response()->json(['message' => 'product distribution plan Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "product distribution plan retrieved successfully.",
-        "data" => $productdis
-        ]);
+        return $productdis;
     }
 
     /**
@@ -126,12 +110,7 @@ class ProductDistributionPlanController extends Controller
         $productdis = ProductDistributionPlan::find($id);
         $productdis->fill($request->all());
         $productdis->save();
-        return response()->json([
-            "success" => true,
-            "message" => "product distribution plan updated successfully.",
-            "data" => $productdis
-
-        ]);
+        return $productdis;
     }
 
     /**
@@ -146,11 +125,8 @@ class ProductDistributionPlanController extends Controller
         if (is_null($productdis)) {
             return response()->json(['message' => 'product distribution plan Not found'], 404);
         };
+        return $productdis;
         $productdis->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "product distribution plan deleted successfully.",
-        "data" => $productdis
-        ]);
+        
     }
 }

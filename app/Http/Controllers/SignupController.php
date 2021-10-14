@@ -40,18 +40,13 @@ class SignupController extends Controller
             'password' => Hash::make($input['password']),
             
         ]);
-        return response()->json([
-        "success" => true,
-        "message" => "user register successfully.",
-        "data" => $user
-         ]);
+        return $user;
 
         auth()->attempt($user);
     }
 
     public function login(Request $request)
     {
-        
         $user_data = array(
         'user_name'  => $request->get('user_name'),
         'password' => $request->get('password')

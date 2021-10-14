@@ -16,11 +16,7 @@ class NonConformityStatusController extends Controller
     public function index()
     {
         $status = NonConformityStatus::all();
-        return response()->json([
-        "success" => true,
-        "message" => "nonconformity status List",
-        "data" => $status
-        ]);
+        return $status;
     }
 
     /**
@@ -52,11 +48,7 @@ class NonConformityStatusController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $status = NonConformityStatus::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "nonconformity status created successfully.",
-        "data" => $status
-         ]);
+        return $status;
     }
 
     /**
@@ -71,11 +63,7 @@ class NonConformityStatusController extends Controller
         if (is_null($status)) {
             return response()->json(['message' => 'nonconformity status Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "nonconformity status retrieved successfully.",
-        "data" => $status
-        ]);
+        return $status;
     }
 
     /**
@@ -90,11 +78,7 @@ class NonConformityStatusController extends Controller
         if (is_null($status)) {
             return response()->json(['message' => 'nonconformity status Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "nonconformity status retrieved successfully.",
-        "data" => $status
-        ]);
+        return $status;
     }
 
     /**
@@ -119,12 +103,7 @@ class NonConformityStatusController extends Controller
         $status = NonConformityStatus::find($id);
         $status->fill($request->all());
         $status->save();
-        return response()->json([
-            "success" => true,
-            "message" => "nonconformity status updated successfully.",
-            "data" => $status
-
-        ]);
+        return $status;
     }
 
     /**
@@ -140,10 +119,6 @@ class NonConformityStatusController extends Controller
             return response()->json(['message' => 'nonconformity status Not found'], 404);
         };
         $status->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "nonconformity status deleted successfully.",
-        "data" => $status
-        ]);
+        return $status;
     }
 }

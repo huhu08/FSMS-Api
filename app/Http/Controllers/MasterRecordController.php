@@ -15,11 +15,7 @@ class MasterRecordController extends Controller
     public function index()
     {
         $master_record = MasterRecord::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Master Records List",
-        "data" => $master_record
-        ]);
+        return $master_record;
     }
 
    /**
@@ -56,11 +52,7 @@ class MasterRecordController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $master_record = MasterRecord::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Master Record created successfully.",
-        "data" => $master_record
-            ]);
+        return $master_record;
     }
 
     /**
@@ -75,11 +67,7 @@ class MasterRecordController extends Controller
         if (is_null($master_record)) {
             return response()->json(['message' =>  'Master Record Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" =>  "Master Record retrieved successfully.",
-        "data" =>  $master_record
-        ]);
+        return $master_record;
     }
 
     /**
@@ -94,11 +82,7 @@ class MasterRecordController extends Controller
         if (is_null($master_record)) {
             return response()->json(['message' =>  'Master Record Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" =>  "Master Record retrieved successfully.",
-        "data" =>  $master_record
-        ]);
+        return $master_record;
     }
 
     /**
@@ -128,12 +112,7 @@ class MasterRecordController extends Controller
             $master_record = MasterRecord::find($id);
             $master_record->fill($request->all());
             $master_record->save();
-        return response()->json([
-            "success" => true,
-            "message" =>  "Master Record updated successfully.",
-            "data" =>  $master_record
-
-        ]);
+            return $master_record;
     }
 
     /**
@@ -148,11 +127,8 @@ class MasterRecordController extends Controller
         if (is_null($master_record)) {
             return response()->json(['message' =>  'Master Record Not found'], 404);
         };
+           
+            return $master_record;
             $master_record->delete();
-        return response()->json([
-        "success" => true,
-        "message" =>  "Master Record deleted successfully.",
-        "data" =>  $master_record
-        ]);
     }
 }

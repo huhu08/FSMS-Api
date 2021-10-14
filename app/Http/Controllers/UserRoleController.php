@@ -16,11 +16,7 @@ class UserRoleController extends Controller
     public function index()
     {
         $user_role = UserRole::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Users Roles List",
-        "data" => $user_role
-        ]);
+        return $user_role;
     }
 
     /**
@@ -52,11 +48,7 @@ class UserRoleController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $user_role = UserRole::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "User Role created successfully.",
-        "data" => $user_role
-         ]);
+        return $user_role;
     }
 
     /**
@@ -71,11 +63,7 @@ class UserRoleController extends Controller
         if (is_null($user_role)) {
             return response()->json(['message' => 'User Role Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "User Role retrieved successfully.",
-        "data" => $user_role
-        ]);
+        return $user_role;
     }
 
     /**
@@ -90,11 +78,7 @@ class UserRoleController extends Controller
         if (is_null($user_role)) {
             return response()->json(['message' => 'User Role Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "User Role retrieved successfully.",
-        "data" => $user_role
-        ]);
+        return $user_role;
     }
 
     /**
@@ -119,11 +103,7 @@ class UserRoleController extends Controller
         $user_role = UserRole::find($id);
         $user_role->fill($request->all());
         $user_role->save();
-        return response()->json([
-            "success" => true,
-            "message" => "User Role updated successfully.",
-            "data" => $user_role
-        ]);
+        return $user_role;
     }
 
     /**
@@ -138,11 +118,7 @@ class UserRoleController extends Controller
         if (is_null($user_role)) {
             return response()->json(['message' => 'User Role Not found'], 404);
         };
+        return $user_role;
         $user_role->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "User Role deleted successfully.",
-        "data" => $user_role
-        ]);
     }
 }

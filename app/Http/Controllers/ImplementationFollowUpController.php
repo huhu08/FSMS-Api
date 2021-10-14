@@ -16,11 +16,7 @@ class ImplementationFollowUpController extends Controller
     public function index()
     {
         $follow_up = ImplementationFollowUp::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Implementation Follow Up List",
-        "data" => $follow_up
-        ]);
+        return $follow_up;
     }
 
     /**
@@ -56,11 +52,7 @@ class ImplementationFollowUpController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $follow_up = ImplementationFollowUp::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Implementation Follow Up created successfully.",
-        "data" => $follow_up
-         ]);
+        return $follow_up;
     }
 
     /**
@@ -75,11 +67,7 @@ class ImplementationFollowUpController extends Controller
         if (is_null($follow_up)) {
             return response()->json(['message' => 'Implementation Follow Up Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Implementation Follow Up retrieved successfully.",
-        "data" => $follow_up
-        ]);
+        return $follow_up;
     }
 
     /**
@@ -94,11 +82,7 @@ class ImplementationFollowUpController extends Controller
         if (is_null($follow_up)) {
             return response()->json(['message' => 'Implementation Follow Up Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Implementation Follow Up retrieved successfully.",
-        "data" => $follow_up
-        ]);
+        return $follow_up;
     }
 
     /**
@@ -126,12 +110,7 @@ class ImplementationFollowUpController extends Controller
         $follow_up = ImplementationFollowUp::find($id);
         $follow_up->fill($request->all());
         $follow_up->save();
-        return response()->json([
-            "success" => true,
-            "message" => "Implementation Follow Up updated successfully.",
-            "data" => $follow_up
-
-        ]);
+        return $follow_up;
     }
 
     /**
@@ -146,11 +125,8 @@ class ImplementationFollowUpController extends Controller
         if (is_null($follow_up)) {
             return response()->json(['message' => 'Implementation Follow Up Not found'], 404);
         };
+        return $follow_up;
         $follow_up->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "Implementation Follow Up deleted successfully.",
-        "data" => $follow_up
-        ]);
+        
     }
 }

@@ -16,11 +16,7 @@ class MachineListController extends Controller
     public function index()
     {
         $machine = MachineList::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Machine List",
-        "data" => $machine
-        ]);
+        return $machine;
     }
 
     /**
@@ -55,11 +51,7 @@ class MachineListController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $machine = MachineList::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Machine List created successfully.",
-        "data" => $machine
-         ]);
+        return $machine;
     }
 
     /**
@@ -74,11 +66,7 @@ class MachineListController extends Controller
         if (is_null($machine)) {
             return response()->json(['message' => 'Machine List Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Machine List retrieved successfully.",
-        "data" => $machine
-        ]);
+        return $machine;
     }
 
     /**
@@ -93,11 +81,7 @@ class MachineListController extends Controller
         if (is_null($machine)) {
             return response()->json(['message' => 'Machine List Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Machine List retrieved successfully.",
-        "data" => $machine
-        ]);
+        return $machine;
     }
 
     /**
@@ -125,12 +109,7 @@ class MachineListController extends Controller
         $machine = MachineList::find($id);
         $machine->fill($request->all());
         $machine->save();
-        return response()->json([
-            "success" => true,
-            "message" => "Machine List updated successfully.",
-            "data" => $machine
-
-        ]);
+        return $machine;
     }
 
     /**
@@ -145,11 +124,8 @@ class MachineListController extends Controller
         if (is_null($machine)) {
             return response()->json(['message' => 'Machine List Not found'], 404);
         };
+       
+        return $machine;
         $machine->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "Machine List deleted successfully.",
-        "data" => $machine
-        ]);
     }
 }

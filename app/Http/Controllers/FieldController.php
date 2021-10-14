@@ -16,11 +16,7 @@ class FieldController extends Controller
     public function index()
     {
         $field = Field::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Fields List",
-        "data" => $field
-        ]);
+        return $field;
     }
 
     /**
@@ -54,11 +50,7 @@ class FieldController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $field = Field::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Field created successfully.",
-        "data" => $field
-         ]);
+        return $field;
     }
 
     /**
@@ -73,11 +65,7 @@ class FieldController extends Controller
         if (is_null($field)) {
             return response()->json(['message' =>  'field Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" =>  "field retrieved successfully.",
-        "data" =>  $field
-        ]);
+        return $field;
     }
 
     /**
@@ -92,11 +80,7 @@ class FieldController extends Controller
         if (is_null($field)) {
             return response()->json(['message' =>  'field Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" =>  "field retrieved successfully.",
-        "data" =>  $field
-        ]);
+        return $field;
     }
 
     /**
@@ -123,12 +107,7 @@ class FieldController extends Controller
          $field = Field::find($id);
          $field->fill($request->all());
          $field->save();
-        return response()->json([
-            "success" => true,
-            "message" =>  "field updated successfully.",
-            "data" =>  $field
-
-        ]);
+         return $field;
     }
 
     /**
@@ -143,11 +122,8 @@ class FieldController extends Controller
         if (is_null($field)) {
             return response()->json(['message' =>  'field Not found'], 404);
         };
+        return $field;
          $field->delete();
-        return response()->json([
-        "success" => true,
-        "message" =>  "field deleted successfully.",
-        "data" =>  $field
-        ]);
+         
     }
 }

@@ -16,11 +16,7 @@ class ItemController extends Controller
     public function index()
     {
         $item = Item::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Items List",
-        "data" => $item
-        ]);
+        return $item;
     }
 
     /**
@@ -54,11 +50,7 @@ class ItemController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $item = Item::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Item created successfully.",
-        "data" => $item
-         ]);
+        return $item;
     }
 
     /**
@@ -73,11 +65,7 @@ class ItemController extends Controller
         if (is_null($item)) {
             return response()->json(['message' => 'Item Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Item retrieved successfully.",
-        "data" => $item
-        ]);
+        return $item;
     }
 
     /**
@@ -92,11 +80,7 @@ class ItemController extends Controller
         if (is_null($item)) {
             return response()->json(['message' => 'Item Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Item retrieved successfully.",
-        "data" => $item
-        ]);
+        return $item;
     }
 
     /**
@@ -123,12 +107,7 @@ class ItemController extends Controller
         $item = Item::find($id);
         $item->fill($request->all());
         $item->save();
-        return response()->json([
-            "success" => true,
-            "message" => "Item updated successfully.",
-            "data" => $item
-
-        ]);
+        return $item;
     }
 
     /**
@@ -143,11 +122,8 @@ class ItemController extends Controller
         if (is_null($item)) {
             return response()->json(['message' => 'Item Not found'], 404);
         };
+       
+        return $item;
         $item->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "Item deleted successfully.",
-        "data" => $item
-        ]);
     }
 }

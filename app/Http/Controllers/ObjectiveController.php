@@ -16,11 +16,7 @@ class ObjectiveController extends Controller
     public function index()
     {
         $objective = Objective::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Objectives List",
-        "data" => $objective
-        ]);
+        return $objective;
     }
 
     /**
@@ -56,11 +52,7 @@ class ObjectiveController extends Controller
             return response()->json(['message' => 'Invalid input'], 404);
         }
         $objective = Objective::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Objective created successfully.",
-        "data" => $objective
-         ]);
+        return $objective;
     }
 
     /**
@@ -75,11 +67,7 @@ class ObjectiveController extends Controller
         if (is_null($objective)) {
             return response()->json(['message' => 'Objective Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "User retrieved successfully.",
-        "data" => $objective
-        ]);
+        return $objective;
     }
 
     /**
@@ -94,11 +82,7 @@ class ObjectiveController extends Controller
         if (is_null($objective)) {
             return response()->json(['message' => 'Objective Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Objective retrieved successfully.",
-        "data" => $objective
-        ]);
+        return $objective;
     }
 
     /**
@@ -127,11 +111,7 @@ class ObjectiveController extends Controller
         $objective = Objective::find($id);
         $objective->fill($request->all());
         $objective->save();
-        return response()->json([
-            "success" => true,
-            "message" => "Objective updated successfully.",
-            "data" => $objective
-        ]);
+        return $objective;
     }
 
     /**
@@ -147,11 +127,8 @@ class ObjectiveController extends Controller
         if (is_null($objective)) {
             return response()->json(['message' => 'Objective Not found'], 404);
         };
+        return $objective;
         $objective->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "objective deleted successfully.",
-        "data" => $objective
-        ]);
+        
     }
 }

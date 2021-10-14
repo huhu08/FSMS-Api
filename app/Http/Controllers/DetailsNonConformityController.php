@@ -17,11 +17,7 @@ class DetailsNonConformityController extends Controller
     public function index()
     {
         $details = DetailsNonConformity::all();
-        return response()->json([
-        "success" => true,
-        "message" => "details List",
-        "data" => $details
-        ]);
+        return $details;
     }
 
    /**
@@ -56,11 +52,7 @@ class DetailsNonConformityController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $details = DetailsNonConformity::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Details created successfully.",
-        "data" => $details
-            ]);
+        return $details;
     }
 
     /**
@@ -75,11 +67,7 @@ class DetailsNonConformityController extends Controller
         if (is_null($details)) {
             return response()->json(['message' =>  'Details Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" =>  "Details retrieved successfully.",
-        "data" =>  $details
-        ]);
+        return $details;
     }
 
     /**
@@ -94,11 +82,7 @@ class DetailsNonConformityController extends Controller
         if (is_null($details)) {
             return response()->json(['message' =>  'Details Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" =>  "Details Record retrieved successfully.",
-        "data" =>  $details
-        ]);
+        return $details;
     }
 
     /**
@@ -127,12 +111,7 @@ class DetailsNonConformityController extends Controller
             $details = DetailsNonConformity::find($id);
             $details->fill($request->all());
             $details->save();
-        return response()->json([
-            "success" => true,
-            "message" =>  "details updated successfully.",
-            "data" =>  $details
-
-        ]);
+            return $details;
     }
 
     /**
@@ -147,11 +126,8 @@ class DetailsNonConformityController extends Controller
         if (is_null($details)) {
             return response()->json(['message' =>  'details Not found'], 404);
         };
-            $details->delete();
-        return response()->json([
-        "success" => true,
-        "message" =>  "details deleted successfully.",
-        "data" =>  $details
-        ]);
+        return $details; 
+        $details->delete();
+           
     }
 }

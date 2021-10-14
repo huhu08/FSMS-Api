@@ -16,11 +16,7 @@ class AreaController extends Controller
     public function index()
     {
         $area = Area::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Areas List",
-        "data" => $area
-        ]);
+        return $area;
     }
 
     /**
@@ -52,11 +48,7 @@ class AreaController extends Controller
             return response()->json(['message' => 'invalid input'], 404);
         }
         $area = Area::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Area created successfully.",
-        "data" => $area
-         ]);
+        return $area;
     }
 
     /**
@@ -71,11 +63,7 @@ class AreaController extends Controller
         if (is_null($area)) {
             return response()->json(['message' => 'Area Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Area retrieved successfully.",
-        "data" => $area
-        ]);
+        return $area;
     }
 
     /**
@@ -90,11 +78,7 @@ class AreaController extends Controller
         if (is_null($area)) {
             return response()->json(['message' => 'Area Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Area retrieved successfully.",
-        "data" => $area
-        ]);
+        return $area;
     }
 
     /**
@@ -119,12 +103,7 @@ class AreaController extends Controller
         $area = Area::find($id);
         $area->fill($request->all());
         $area->save();
-        return response()->json([
-            "success" => true,
-            "message" => "Area updated successfully.",
-            "data" => $area
-
-        ]);
+        return $area;
     }
 
     /**
@@ -139,11 +118,8 @@ class AreaController extends Controller
         if (is_null($area)) {
             return response()->json(['message' => 'Area Not found'], 404);
         };
+        return $area;
         $area->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "Area deleted successfully.",
-        "data" => $area
-        ]);
+        
     }
 }

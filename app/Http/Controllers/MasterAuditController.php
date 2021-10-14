@@ -16,11 +16,7 @@ class MasterAuditController extends Controller
     public function index()
     {
         $master_audit = MasterAudit::all();
-        return response()->json([
-        "success" => true,
-        "message" => "Master Audits List",
-        "data" => $master_audit
-        ]);
+        return $master_audit;
     }
 
     /**
@@ -57,11 +53,7 @@ class MasterAuditController extends Controller
             return response()->json(['message' => 'Invalid input'], 404);
         }
         $master_audit = MasterAudit::create($input);
-        return response()->json([
-        "success" => true,
-        "message" => "Mater Audit created successfully.",
-        "data" => $master_audit
-         ]);
+        return $master_audit;
     }
 
     /**
@@ -76,11 +68,7 @@ class MasterAuditController extends Controller
         if (is_null($master_audit)) {
             return response()->json(['message' => 'Master Audit Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Master Audit retrieved successfully.",
-        "data" => $master_audit
-        ]);
+        return $master_audit;
     }
 
     /**
@@ -95,11 +83,7 @@ class MasterAuditController extends Controller
         if (is_null($master_audit)) {
             return response()->json(['message' => 'Master Audit Not found'], 404);
         }
-        return response()->json([
-        "success" => true,
-        "message" => "Master Audit retrieved successfully.",
-        "data" => $master_audit
-        ]);
+        return $master_audit;
     }
 
     /**
@@ -129,11 +113,7 @@ class MasterAuditController extends Controller
         $master_audit = MasterAudit::find($id);
         $master_audit->fill($request->all());
         $master_audit->save();
-        return response()->json([
-            "success" => true,
-            "message" => "Master Audit updated successfully.",
-            "data" => $master_audit
-        ]);
+        return $master_audit;
     }
 
     /**
@@ -148,11 +128,7 @@ class MasterAuditController extends Controller
         if (is_null($master_audit)) {
             return response()->json(['message' => 'Master Audit Not found'], 404);
         };
+        return $master_audit;
         $master_audit->delete();
-        return response()->json([
-        "success" => true,
-        "message" => "Master Audit deleted successfully.",
-        "data" => $master_audit
-        ]);
     }
 }
