@@ -44,7 +44,8 @@ class FieldController extends Controller
             'template_id' => 'numeric',
             'user_id' => 'numeric',
             'update_user' => 'numeric',
-            'status' => 'numeric'
+            'status' => 'numeric',
+            'type' => 'max:500'
         ]);
         if ($validator->fails()) {
             return response()->json(['message' => 'invalid input'], 404);
@@ -99,7 +100,8 @@ class FieldController extends Controller
             'template_id' => 'numeric',
             'user_id' => 'numeric',
             'update_user' => 'numeric',
-            'status' => 'numeric'
+            'status' => 'numeric',
+            'type' => 'max:500'
         ]);
         if ($validator->fails()) {
             return response()->json(['message' =>  'field invalid'], 404);

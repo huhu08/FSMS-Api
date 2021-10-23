@@ -22,24 +22,15 @@ class SignupController extends Controller
             'full_name' => 'required|max:255',
             'user_name' => 'required|unique:users|max:255',
             'phone_number' => 'required|digits:10',
-            
             'role_id' => 'numeric',
+            'status' => 'numeric',
             'department_id' => 'numeric',
             'password' => 'required|min:8'
         ]);
         if ($validator->fails()) {
             return response()->json(['message' => 'Invalid input'], 404);
         }
-        $user = User::create([
-            'full_name' => $input['full_name'],
-            'user_name' => $input['user_name'],
-            'phone_number' => $input['phone_number'],
-            'status' => $input['status'],
-            'role_id' => $input['role_id'],
-            'department_id' => $input['department_id'],
-            'password' => Hash::make($input['password']),
-            
-        ]);
+        $user = User::create($input);
         return $user;
 
         auth()->attempt($user);

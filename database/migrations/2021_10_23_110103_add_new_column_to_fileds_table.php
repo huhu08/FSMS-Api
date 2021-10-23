@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EditProceduresTable extends Migration
+class AddNewColumnToFiledsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class EditProceduresTable extends Migration
      */
     public function up()
     {
-        Schema::table('procedures', function (Blueprint $table) {
-            $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('update_user')->nullable();
-            $table->integer('status')->nullable();
+        Schema::table('fileds', function (Blueprint $table) {
+            $table->string('type')->nullable;
         });
     }
 
@@ -28,6 +25,8 @@ class EditProceduresTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('fileds', function (Blueprint $table) {
+            //
+        });
     }
 }

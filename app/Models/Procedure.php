@@ -15,7 +15,10 @@ class Procedure extends Model
         'name',
         'status',
         'update_user',
-
+        'version_date',
+        'version_no',
+        'update_date',
+        'page_no',
        ];
   
 }

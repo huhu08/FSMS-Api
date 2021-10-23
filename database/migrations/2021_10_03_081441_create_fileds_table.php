@@ -13,7 +13,7 @@ class CreateFiledsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fields', function (Blueprint $table) {
+        Schema::create('fileds', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('template_id')->unsigned()->nullable();
             $table->foreign('template_id')->references('id')->on('templates');

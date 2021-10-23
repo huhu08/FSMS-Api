@@ -91,7 +91,6 @@ class UserController extends Controller
         if (is_null($user)) {
             return $this->sendError('user not found.');
         }
-       
         return $user;
         $user->delete();
     }
@@ -99,7 +98,6 @@ class UserController extends Controller
 
     public function role(Request $request)
     {
-        
         $user_id = $request->input('user_id'); // get user id 
         $role_id = $request->input('role_id'); // get  Role id 
 
@@ -108,7 +106,6 @@ class UserController extends Controller
         $user = User::find($user_id);
         $user->role_id = $request->input('role_id'); 
         $user->save();
-        
         return response()->json(['success' =>'Role assigned successfully']);
     }
 

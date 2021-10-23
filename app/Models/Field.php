@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Field extends Model
 {
     use HasFactory;
-    protected $table = 'fields';
+    protected $table = 'fileds';
     /**
      * The attributes that are mass assignable.
      *
@@ -22,5 +22,6 @@ class Field extends Model
         'update_user',
         'user_id',
         'status',
+        'type',
     ];
 }
