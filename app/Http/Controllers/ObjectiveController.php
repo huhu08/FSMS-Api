@@ -129,6 +129,5 @@ class ObjectiveController extends Controller
         };
         return $objective;
         $objective->delete();
-        
     }
 }

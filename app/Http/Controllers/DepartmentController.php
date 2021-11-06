@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Department;
 use Validator;
 
-
 class DepartmentController extends Controller
 {
     /**
@@ -18,7 +17,6 @@ class DepartmentController extends Controller
     {
         //
               return Department::all();
-
     }
 
     /**
@@ -48,7 +46,7 @@ class DepartmentController extends Controller
      */
     public function show($id)
     {
-        
+
         return Department::find($id);
     }
 
@@ -74,7 +72,7 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-      return  Department::destroy($id);
+        return  Department::destroy($id);
     }
 
     /**
@@ -85,6 +83,6 @@ class DepartmentController extends Controller
      */
     public function search($name)
     {
-      return  Department::where('Department_name','like', '%'.$name.'%')->get();
+        return  Department::where('Department_name', 'like', '%'.$name.'%')->get();
     }
 }

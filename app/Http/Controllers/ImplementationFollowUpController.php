@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ImplementationFollowUp;
-use Validator; 
+use Validator;
 
 class ImplementationFollowUpController extends Controller
 {
@@ -127,6 +127,5 @@ class ImplementationFollowUpController extends Controller
         };
         return $follow_up;
         $follow_up->delete();
-        
     }
 }

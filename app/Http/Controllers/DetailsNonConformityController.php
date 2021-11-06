@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\DetailsNonConformity;
 use Validator;
 
-
 class DetailsNonConformityController extends Controller
 {
     /**
@@ -103,7 +102,7 @@ class DetailsNonConformityController extends Controller
             'user_id' => 'numeric',
             'update_user' => 'numeric',
             'status' => 'numeric'
-            
+
         ]);
         if ($validator->fails()) {
             return response()->json(['message' =>  'details invalid'], 404);
@@ -126,8 +125,7 @@ class DetailsNonConformityController extends Controller
         if (is_null($details)) {
             return response()->json(['message' =>  'details Not found'], 404);
         };
-        return $details; 
+        return $details;
         $details->delete();
-           
     }
 }

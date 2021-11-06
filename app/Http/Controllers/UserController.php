@@ -104,9 +104,9 @@ class UserController extends Controller
          /* Todo request validation*/
 
         $user = User::find($user_id);
-        $user->role_id = $request->input('role_id'); 
+        $user->role_id = $request->input('role_id');
         $user->save();
-        return response()->json(['success' =>'Role assigned successfully']);
+        return response()->json(['success' => 'Role assigned successfully']);
     }
 
     public function activate(Request $request)
@@ -114,7 +114,7 @@ class UserController extends Controller
         $user = User::find($request->id);
         $user->status = 1;
         $user->save();
-        return response()->json(['success' =>'user is Activated']);
+        return response()->json(['success' => 'user is Activated']);
     }
 
     public function deactivate(Request $request)
@@ -122,6 +122,6 @@ class UserController extends Controller
         $user = User::find($request->id);
         $user->status = 0;
         $user->save();
-        return response()->json(['success' =>'user is Deactivated']);
+        return response()->json(['success' => 'user is Deactivated']);
     }
 }

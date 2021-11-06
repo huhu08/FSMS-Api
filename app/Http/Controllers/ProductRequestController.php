@@ -123,7 +123,7 @@ class ProductRequestController extends Controller
         if (is_null($product_request)) {
             return response()->json(['message' => 'product request Not found'], 404);
         };
-    
+
         return $product_request;
         $product_request->delete();
     }

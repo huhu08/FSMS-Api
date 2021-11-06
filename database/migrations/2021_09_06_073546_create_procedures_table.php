@@ -19,15 +19,11 @@ class CreateProceduresTable extends Migration
             // $table->UnsignedBigInteger('Department_id');
             $table->foreignId('Department_id')->nullable()->constrained();
            // $table->foreignId('User_id')->nullable()->constrained();
-            
-        
-
             $table->timestamps();
         });
         // Schema::table('procedures', function (Blueprint $table) {
-            
-        // });
 
+        // });
     }
 
     /**

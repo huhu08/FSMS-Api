@@ -122,7 +122,6 @@ class ItemController extends Controller
         if (is_null($item)) {
             return response()->json(['message' => 'Item Not found'], 404);
         };
-       
         return $item;
         $item->delete();
     }

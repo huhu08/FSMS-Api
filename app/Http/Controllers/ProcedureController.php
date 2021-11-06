@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Procedure;
 
-
 class ProcedureController extends Controller
 {
     /**
@@ -16,7 +15,6 @@ class ProcedureController extends Controller
     public function index()
     {
         return Procedure::all();
-
     }
 
     /**
@@ -27,8 +25,22 @@ class ProcedureController extends Controller
      */
     public function store(Request $request)
     {
-        return Procedure::create($request->all());
-        
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'Procedure_name' => 'required|max:255|unique:procedures',
+            'name' => 'required|max:255',
+            'status' => 'numeric',
+            'page_no' => 'numeric',
+            'update_user' => 'numeric',
+            'update_date' => 'date',
+            'version_date' => 'date',
+            'version_no' => 'numeric'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Invalid input'], 404);
+        }
+        $Procedure = Procedure::create($input);
+        return $Procedure;
     }
 
     /**
@@ -39,8 +51,11 @@ class ProcedureController extends Controller
      */
     public function show($id)
     {
-        return Procedure::find($id);
-        
+        $Procedure = Procedure::find($id);
+        if (is_null($Procedure)) {
+            return response()->json(['message' => 'Procedure Not found'], 404);
+        }
+        return $Procedure;
     }
 
     /**
@@ -52,8 +67,23 @@ class ProcedureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $procedure = procedure::find($id);
-        $procedure ->update($request->all());
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'Procedure_name' => 'max:255|unique:procedures',
+            'name' => 'max:255',
+            'status' => 'numeric',
+            'page_no' => 'numeric',
+            'update_user' => 'numeric',
+            'update_date' => 'date',
+            'version_date' => 'date',
+            'version_no' => 'numeric'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => 'invalid input'], 404);
+        }
+        $procedure = Procedure::find($id);
+        $procedure->fill($request->all());
+        $procedure->save();
         return $procedure;
     }
 
@@ -65,7 +95,13 @@ class ProcedureController extends Controller
      */
     public function destroy($id)
     {
-        return  Procedure::destroy($id);
+        $procedure = Procedure::find($id);
+        if (is_null($procedure)) {
+            return response()->json(['message' => 'procedure Not found'], 404);
+        };
+        return $procedure;
+        $procedure->delete();
+    }
 
     }
 

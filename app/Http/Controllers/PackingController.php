@@ -124,6 +124,5 @@ class PackingController extends Controller
         };
         return $packing;
         $packing->delete();
-        
     }
 }

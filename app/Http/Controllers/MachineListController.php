@@ -124,7 +124,6 @@ class MachineListController extends Controller
         if (is_null($machine)) {
             return response()->json(['message' => 'Machine List Not found'], 404);
         };
-       
         return $machine;
         $machine->delete();
     }

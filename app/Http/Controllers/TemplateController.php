@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Template;
 
-
 class TemplateController extends Controller
 {
     /**
@@ -16,7 +15,6 @@ class TemplateController extends Controller
     public function index()
     {
         return Template::all();
-
     }
 
     /**
@@ -27,8 +25,21 @@ class TemplateController extends Controller
      */
     public function store(Request $request)
     {
-        return Template::create($request->all());
-        
+        $input = $request->all();
+        $validator = Validator::make($input, [
+
+            'Template_name' => 'required|max:255|unique:templates',
+            'Procedure_Id' => 'numeric',
+            'name' => 'required|max:255',
+            'user_id' => 'numeric',
+            'update_user' => 'numeric',
+            'status' => 'numeric'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => 'invalid input'], 404);
+        }
+        $template =  Template::create($input);
+        return $template;
     }
 
     /**
@@ -39,8 +50,11 @@ class TemplateController extends Controller
      */
     public function show($id)
     {
-        return Template::find($id);
-        
+         $template = Template::find($id);
+        if (is_null($template)) {
+            return response()->json(['message' => 'template Not found'], 404);
+        }
+        return $template;
     }
 
     /**
@@ -52,8 +66,21 @@ class TemplateController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'Template_name' => 'required|max:255|unique:templates',
+            'Procedure_Id' => 'numeric',
+            'name' => 'required|max:255',
+            'user_id' => 'numeric',
+            'update_user' => 'numeric',
+            'status' => 'numeric'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => 'invalid input'], 404);
+        }
         $template = template::find($id);
-        $template ->update($request->all());
+        $template->fill($request->all());
+        $template->save();
         return $template;
     }
 
@@ -65,11 +92,15 @@ class TemplateController extends Controller
      */
     public function destroy($id)
     {
-        return  Template::destroy($id);
-        
+        $template = Template::destroy($id);
+        if (is_null($template)) {
+            return response()->json(['message' => 'template Not found'], 404);
+        };
+        return  $template;
+        $template->delete();
     }
     public function search($name)
     {
-      return  Template::where('Template_name','like', '%'.$name.'%')->get();
+        return  Template::where('Template_name', 'like', '%'.$name.'%')->get();
     }
 }

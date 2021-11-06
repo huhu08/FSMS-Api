@@ -127,7 +127,7 @@ class MasterRecordController extends Controller
         if (is_null($master_record)) {
             return response()->json(['message' =>  'Master Record Not found'], 404);
         };
-           
+
             return $master_record;
             $master_record->delete();
     }

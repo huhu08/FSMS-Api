@@ -127,6 +127,5 @@ class ProductDistributionPlanController extends Controller
         };
         return $productdis;
         $productdis->delete();
-        
     }
 }

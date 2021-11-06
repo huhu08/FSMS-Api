@@ -123,6 +123,5 @@ class DetailRecordController extends Controller
         };
         return $detail_record;
             $detail_record->delete();
-      
     }
 }

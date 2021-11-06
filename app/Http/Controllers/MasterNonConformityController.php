@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\MasterNonConformity;
 use Validator;
 
-
 class MasterNonConformityController extends Controller
 {
     /**
@@ -40,7 +39,7 @@ class MasterNonConformityController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-           
+
             'department_id' => 'numeric',
             'non_conformity_status_id' => 'numeric',
             'auditor_name' => 'required|max:255',
@@ -131,7 +130,7 @@ class MasterNonConformityController extends Controller
         if (is_null($master)) {
             return response()->json(['message' => 'Master nonconformity Not found'], 404);
         };
-       
+
         return $master;
         $master->delete();
     }

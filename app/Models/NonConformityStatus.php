@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class NonConformityStatus extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'non_conformity_status';
     /**
      * The attributes that are mass assignable.

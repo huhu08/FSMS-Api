@@ -126,6 +126,5 @@ class FieldController extends Controller
         };
         return $field;
          $field->delete();
-         
     }
 }
