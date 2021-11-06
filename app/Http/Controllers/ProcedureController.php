@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Procedure;
+use Validator;
 
 class ProcedureController extends Controller
 {
@@ -103,7 +104,6 @@ class ProcedureController extends Controller
         $procedure->delete();
     }
 
-    }
 
     /**
      * search the specified Procedure from storage.

@@ -53,7 +53,7 @@ Route::delete('/procedure/{id}', [ProcedureController::class, 'destroy']);
 
 //Routes for Template
 Route::get('/template',[TemplateController::class,'index']);
-Route::get('/template/{id}',[ProcedureController::class,'show']);
+Route::get('/template/{id}',[TemplateController::class,'show']);
 Route::post('/template',[TemplateController::class,'store']);
 Route::get('/template/search/{name}', [TemplateController::class, 'search']);
 Route::put('/template/{id}', [TemplateController::class, 'update']);

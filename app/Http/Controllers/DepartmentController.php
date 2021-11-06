@@ -87,4 +87,6 @@ class DepartmentController extends Controller
     {
         return  Department::where('Department_name', 'like', '%'.$name.'%')->get();
     }
+    
 }
+

@@ -37,20 +37,16 @@ class DetailsNonConformityController extends Controller
         */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $validator = Validator::make($input, [
-            'description' => 'required|max:1000',
-            'action' => 'required|1000',
-            'problem_casuses' => 'max:500',
-            'apply_date' => 'date',
-            'user_id' => 'numeric',
-            'update_user' => 'numeric',
-            'status' => 'numeric'
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['message' => 'invalid input'], 404);
-        }
-        $details = DetailsNonConformity::create($input);
+        $details = new DetailsNonConformity;
+        $details->description = $request->description;
+        $details->action = $request->action;
+        $details->problem_casuses = $request->problem_casuses;
+        $details->descions = $request->descions;
+        $details->apply_date = $request->apply_date;
+        $details->user_id = $request->user_id;
+        $details->update_user = $request->update_user;
+        $details->status = $request->status;
+        $details->save();
         return $details;
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MasterAudit;
+use App\Models\Department;
 use Validator;
 
 class MasterAuditController extends Controller

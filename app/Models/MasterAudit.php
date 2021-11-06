@@ -29,4 +29,9 @@ class MasterAudit extends Model
        'audit_id',
        'audit_title'
     ];
+
+    public function department()
+    {
+        return $this->hasOne('Department')->select(['id', 'Department_name']);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Template;
+use Validator;
 
 class TemplateController extends Controller
 {
@@ -27,7 +28,6 @@ class TemplateController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-
             'Template_name' => 'required|max:255|unique:templates',
             'Procedure_Id' => 'numeric',
             'name' => 'required|max:255',

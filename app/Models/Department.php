@@ -15,4 +15,10 @@ class Department extends Model
       'update_user',
      ];
 
+     public function audit()
+     {
+         return $this->belongsTo(MasterAudit::class);
+         // OR return $this->belongsTo('App\User');
+     }
+
 }
