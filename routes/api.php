@@ -42,6 +42,7 @@ use App\Http\Controllers\NonConformityStatusController;
  Route::get('/department/search/{name}', [DepartmentController::class, 'search']);
  Route::put('/department/{id}', [DepartmentController::class, 'update']);
  Route::delete('/department/{id}', [DepartmentController::class, 'destroy']);
+ Route::get('/department/{id}', [DepartmentController::class, 'show']);
  
 //Routes for Procedure
 Route::get('/procedure',[ProcedureController::class,'index']);

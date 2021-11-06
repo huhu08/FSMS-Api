@@ -26,5 +26,7 @@ class MasterAudit extends Model
        'update_user',
        'update_date',
        'status',
+       'audit_id',
+       'audit_title'
     ];
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNewColumnToFieldsTable extends Migration
+class EditMasterAudit extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddNewColumnToFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::table('fields', function (Blueprint $table) {
-            $table->string('type')->nullable;
+        Schema::table('master_audit', function (Blueprint $table) {
+            $table->integer('audit_id')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddNewColumnToFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::table('fields', function (Blueprint $table) {
+        Schema::table('master_audit', function (Blueprint $table) {
             //
         });
     }
