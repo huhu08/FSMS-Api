@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFiledsTable extends Migration
+class CreateFieldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFiledsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fileds', function (Blueprint $table) {
+        Schema::create('fields', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('template_id')->unsigned()->nullable();
             $table->foreign('template_id')->references('id')->on('templates');
@@ -38,6 +38,6 @@ class CreateFiledsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fileds');
+        Schema::dropIfExists('fields');
     }
 }

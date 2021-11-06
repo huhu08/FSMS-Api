@@ -26,5 +26,6 @@ class DetailsNonConformity extends Model
         'update_user',
         'user_id',
         'status',
-
+    ];
 }
+

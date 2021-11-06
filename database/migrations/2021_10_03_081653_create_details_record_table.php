@@ -18,7 +18,7 @@ class CreateDetailsRecordTable extends Migration
             
             $table->integer('operation_no');
             $table->bigInteger('filed_id')->unsigned()->nullable();
-            $table->foreign('filed_id')->references('id')->on('fileds');
+            $table->foreign('filed_id')->references('id')->on('fields');
             $table->text('content');
 
             $table->bigInteger('user_id')->unsigned()->nullable();

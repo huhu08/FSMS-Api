@@ -47,7 +47,8 @@ class MasterAuditController extends Controller
             'date_in' => 'date',
             'update_date' => 'date',
             'update_user' => 'numeric',
-            'status' => 'numeric'
+            'status' => 'numeric',
+            'audit_id'=> 'numeric'
         ]);
         if ($validator->fails()) {
             return response()->json(['message' => 'Invalid input'], 404);
@@ -62,9 +63,9 @@ class MasterAuditController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($audit_id)
     {
-        $master_audit = MasterAudit::find($id);
+        $master_audit = MasterAudit::find($audit_id);
         if (is_null($master_audit)) {
             return response()->json(['message' => 'Master Audit Not found'], 404);
         }

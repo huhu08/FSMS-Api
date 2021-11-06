@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNewColumnToFieldsTable extends Migration
+class FormHeader extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,7 @@ class AddNewColumnToFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::table('fields', function (Blueprint $table) {
-            $table->string('type')->nullable;
-        });
+        //
     }
 
     /**
@@ -25,8 +23,6 @@ class AddNewColumnToFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::table('fields', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }
